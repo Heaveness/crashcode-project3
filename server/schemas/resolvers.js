@@ -28,6 +28,16 @@ const resolvers = {
       const comments = await Comments.create(args);
       return comments;
     },
+    deleteCode: async (parent, { codeId }) => {
+      return Codes.findOneAndDelete({ _id: codeId })
+    },
+    updateCode: async (parent, { codeId, content }) => {
+      return Codes.findOneAndUpdate(
+        { _id: codeId },
+        { $set: { content: content } },
+        { new: true },
+      );
+    }
   },
 };
 
