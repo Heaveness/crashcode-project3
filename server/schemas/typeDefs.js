@@ -38,6 +38,8 @@ const typeDefs = gql`
     addUser(firstName: String!, lastName: String!, username: String!, email: String!, password: String!): User
     addCodes(title: String!, content: String!, programmingLanguage: String! username: String!): Codes
     addComments(text: String!, username: String!): Comments
+    deleteCode(codeId: ID!): Codes
+    updateCode(codeId: ID!, content: String!): Codes
   }
 `;
 
