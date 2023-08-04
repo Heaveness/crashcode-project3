@@ -1,0 +1,28 @@
+[
+    {
+      "title": "Hello, World in Python",
+      "content": "print('Hello, world!')",
+      "programmingLanguage": "Python"
+    },
+    {
+      "title": "Simple Calculator in JavaScript",
+      "content": "function add(a, b) {\n    return a + b;\n}\n\nfunction subtract(a, b) {\n    return a - b;\n}",
+      "programmingLanguage": "JavaScript"
+    },
+    {
+      "title": "Data Processing in Python using Pandas",
+      "content": "import pandas as pd\n\ndata = pd.read_csv('data.csv')\nprint(data.head())",
+      "programmingLanguage": "Python"
+    },
+    {
+      "title": "User Authentication in Node.js",
+      "content": "const express = require('express');\nconst app = express();\n// Implementation of user authentication logic\n",
+      "programmingLanguage": "Node.js"
+    },
+    {
+      "title": "Object-Oriented Programming in Java",
+      "content": "public class Circle {\n    private double radius;\n    \n    public Circle(double radius) {\n        this.radius = radius;\n    }\n    \n    public double getArea() {\n        return Math.PI * radius * radius;\n    }\n}",
+      "programmingLanguage": "Java"
+    }
+]
+  
