@@ -17,18 +17,16 @@ const commentData = require('./commentData.json');
 //   process.exit(0);
 // });
 
-
-
 db.once('open', async () => {
   await User.deleteMany({});
   await Codes.deleteMany({});
   await Comments.deleteMany({});
   
-  const user = await User.create(userData);
+  const users = await User.insertMany(userData);
 
-  const userData = {};
-  for (let user of userData) {
-    userMap[user.username] = user.id;
+  const userMap = {};
+  for (let createdUser of users) {
+    userMap[createdUser.username] = createdUser._id;
   }
 
   for (let code of codeData) {
@@ -48,6 +46,8 @@ db.once('open', async () => {
       console.log(`No user found for username ${comment.username}, skipping this comment.`);
       continue;
     }
-    await Comment.create(comment);
+    await Comments.create(comment);
   }
+  console.log('All tables have been updated');
+  process.exit(0);
 });
