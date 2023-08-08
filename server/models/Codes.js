@@ -13,19 +13,15 @@ const codeSchema = new Schema({
     type: String,
     required: true,
   },
-  
   createdAt: { type: Date, default: Date.now },
-
   comments: [{
     type: Schema.Types.ObjectId,
-    ref: 'comments'
+    ref: 'Comments'
   }],
-
   username: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
-
-
 });
 
 const Codes = model('Codes', codeSchema);
