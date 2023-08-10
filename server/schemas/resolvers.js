@@ -9,7 +9,7 @@ const resolvers = {
       });
     },
     codes: async () => {
-      return await Codes.find({}).populate('comments').populate('user');
+      return await Codes.find().populate('comments')
     },
     comments: async () => {
       return await Comments.find({}).populate('user');
