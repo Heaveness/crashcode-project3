@@ -1,8 +1,9 @@
 // Imports required
 import React from "react";
 import { useQuery } from '@apollo/client';
-import DisplayPost from "./DisplayPost";
 import { QUERY_CODES } from "../../utils/queries";
+
+import DisplayPost from "./DisplayPost";
 
 
 function Home() {
@@ -17,7 +18,7 @@ function Home() {
         <div>Loading...</div> 
       ) : (
         <DisplayPost codes={codes}/>
-      )  }
+       )  } 
     </div>
   )
 };

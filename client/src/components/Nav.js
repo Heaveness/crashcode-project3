@@ -1,27 +1,27 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 
 
 function Nav () {
-    
+
     return (
         <div>
-            <div>
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Search Below</span>
-            </div>
-            <input type="text" class="form-control" aria-label="search" aria-describedby="inputGroup-sizing-sm"></input>
-            </div>
             <nav>
-                <ul>
+                <ul id="nav-list">
+                <div>
+                <label htmlFor="search" className="form-label">Search:  </label>
+                <input type="text" className="form-control" aria-label="search" aria-describedby="inputGroup-sizing-sm"></input>
+            </div>
+                    
                     <li>
-                        <a href="#about">Login/Sign Up</a>
+                        <Link className="btn primaryBtn" to="/createPost">Post a Code</Link>
                     </li>
                     <li>
-                        <a href="#portfolio">Post a Code!</a>
+                        <Link className="btn primaryBtn" to="/user">User</Link>
                     </li>
                     <li>
-                        <a href="#portfolio">Contact Us</a>
+                        <Link className="btn primaryBtn" to="/login">Login / Signup</Link>
                     </li>
                 </ul>
             </nav>

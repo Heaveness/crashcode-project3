@@ -1,4 +1,5 @@
 const { User, Codes, Comments } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -8,6 +9,9 @@ const resolvers = {
         populate: 'comments'
       });
     },
+    singleUser: async (parent, { userId }) => {
+      return User.findOne({ _id: userId });
+    },
     codes: async () => {
       return await Codes.find().populate('comments')
     },
@@ -16,12 +20,13 @@ const resolvers = {
     }
   },
   Mutation: {
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
-      return user;
+    addUser: async (parent, {username, email, password}) => {
+      const user = await User.create({username, email, password});
+      const token = signToken(user);
+      return {token ,user};
     },
-    addCodes: async (parent, args) => {
-      const codes = await Codes.create(args);
+    addCodes: async (parent, {title, content, programmingLanguage, username}) => {
+      const codes = await Codes.create( {title, content, programmingLanguage, username});
       return codes;
     },
     addComments: async (parent, args) => {
