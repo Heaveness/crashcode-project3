@@ -13,6 +13,19 @@ export const QUERY_CODES = gql`
   }
 `;
 
+export const QUERY_SINGLE_CODE = gql`
+  query singleCode($codeId: ID!) {
+    singleCode(codeId: $codeId) {
+      _id
+      title
+      content
+      programmingLanguage
+      username
+      createdAt
+    }
+  }
+`;
+
 export const QUERY_SINGLE_USER = gql`
   query singleUser($userId: ID!) {
     singleUser(userId: $userId) {

@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const moment = require('moment');
 
 const codeSchema = new Schema({
   title: {
@@ -21,8 +22,18 @@ const codeSchema = new Schema({
   username: {
     type: String,
     required: true,
+  },
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 });
+
+codeSchema.virtual('formattedCreatedAt').get(function () {
+  return moment(this.createdAt).format('MMMM Do YYYY, h:mm:ss a');
+});
+
+codeSchema.set('toJSON', { virtuals: true });
 
 const Codes = model('Codes', codeSchema);
 

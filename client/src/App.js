@@ -11,6 +11,7 @@ import Nav from './components/Nav';
 import CreatePost from './components/pages/CreatePost';
 import Login from './components/pages/Login';
 import User from './components/pages/User';
+import SinglePost from './components/pages/SinglePost';
 
 
 
@@ -42,7 +43,10 @@ function App() {
                 path="/user" 
                 element={<User />} 
               />
-
+              <Route
+                path="/codes/:codeId"
+                element={<SinglePost />}
+              />
             </Routes>
           <Footer />
         </Router>
