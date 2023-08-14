@@ -15,22 +15,36 @@ export const QUERY_CODES = gql`
 
 export const QUERY_SINGLE_USER = gql`
   query singleUser($userId: ID!) {
-    user(userId: $userId) {
+    singleUser(userId: $userId) {
       _id
-      firstName
       username
       email
+      codes {
+        _id
+        title
+        content
+        programmingLanguage
+        username
+        createdAt
+      }
     }
   }
 `;
 
-export const QUERY_ME = gql`
-  query me {
-    me {
+export const QUERY_USER = gql`
+  query user {
+    user {
       _id
-      firstName
       username
-      skills
+      email
+      codes {
+        _id
+        title
+        content
+        programmingLanguage
+        username
+        createdAt
+      }
     }
   }
 `;

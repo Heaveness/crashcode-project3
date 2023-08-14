@@ -1,36 +1,29 @@
 import React from 'react';
-
-import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import { QUERY_SINGLE_USER, QUERY_ME} from '../../utils/queries';
+import { QUERY_SINGLE_USER } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
 function User() {
-    const { userId } = useParams();
-
-    // If there is no `userId` in the URL as a parameter, execute the `QUERY_ME` query instead for the logged in user's information
-    const { loading, data } = useQuery(
-      userId ? QUERY_SINGLE_USER : QUERY_ME,
+  const userId = Auth.getUser().data._id;
+    const { loading, data, error } = useQuery(QUERY_SINGLE_USER, 
       {
-        variables: { _id: userId },
+        variables: { userId },
       }
     );
-  
-    // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_USER` query
-    const user = data?.me || data?.user || {};
-  
-    // Use React Router's `<Redirect />` component to redirect to personal user page if username is yours
-    if (Auth.loggedIn() && Auth.getUser().data._id === userId) {
-      return <Navigate to="/me" />;
-    }
-  
-    if (loading) {
+
+    if (loading ) {
       return <div>Loading...</div>;
     }
+    
+    if (error) { 
+      return <div>Error loading user data...</div>;
+    }
   
-    if (!user?.name) {
+    const user = data?.singleUser.username || {};
+
+    if (!user) {
       return (
         <h4>
           You need to be logged in to see your user page. Use the navigation
@@ -38,15 +31,39 @@ function User() {
         </h4>
       );
     }
+    if (!user.codes?.length) {
+      return (
+        <h4>
+          You have not posted any codes yet!
+        </h4>
+      );
+    }
   
     return (
       <div>
-        <div className="card-body">
-          <h3>
-            {user.username}'s {userId ? 'username' : 'email address'} is{' '}
-            {user.email}!
-          </h3>
-        </div>
+        <h2 className="card-header">Your Codes</h2>
+        <div className="flex-row justify-center mb-4">
+          <div className="col-12 col-lg-10">
+            <div className="card">
+              <div className="card-body">
+                {user.codes &&
+                  user.codes.map((code) => (
+                    <div key={code._id} className="card mb-3">
+                      <h4 className="card-header bg-dark text-light p-2 m-0">
+                        [{code.programmingLanguage}] {code.title}
+                      </h4>
+                      <div className="card-body bg-light p-2">
+                        <p>{code.content}</p>
+                        <p className="card-header">
+                          {code.username} posted on {code.createdAt}
+                        </p>
+                      </div> 
+                    </div> 
+                ))}
+              </div> 
+            </div> 
+          </div> 
+        </div> 
       </div>
       
     );
