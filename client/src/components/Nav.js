@@ -17,7 +17,9 @@ useEffect(() => {
 },[]);
 
 const handleLogout = () => {
+    window.location.assign('/');
     Auth.logout();
+    
 
 }
     return (
@@ -32,13 +34,16 @@ const handleLogout = () => {
                     <div>
                         <h4>Welcome {user}</h4>
                     </div>  ) : (null)}
-                                      
+                    {user ? (
                     <li>
-                        <Link className="btn primaryBtn" to="/createPost">Post a Code</Link>
+                    <Link className="btn primaryBtn" to="/createPost">Post a Code</Link>
                     </li>
+                    ) : (null)}                   
+                    {user ? (
                     <li>
-                        <Link className="btn primaryBtn" to="/user">User</Link>
+                        <Link className="btn primaryBtn" to="/user">My Profile</Link>
                     </li>
+                    ) : (null)}                   
                     {user ? (
                     <li>
                         <button className="btn primaryBtn" onClick={handleLogout}>Logout</button>

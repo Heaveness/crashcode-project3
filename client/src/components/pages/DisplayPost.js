@@ -9,17 +9,13 @@ const DisplayPost = ({codes}) => {
             {codes && codes.map(code => (
                 <div key={code._id} className="card mb-3">
                     <h3 className="card-header text-light bg-dark p-2 m-0">
-                        {code.title} 
+                    [{code.programmingLanguage}] {code.title} 
                     </h3>
-                    <h4>
-                    Code Language: {code.programmingLanguage}
-                    </h4>
                     <div className="card-body">
                         <p>{code.content}</p>
                     </div>
                     <p className="card-header">
-                        {code.username}
-                        posted on {code.createdAt}
+                        {code.username} posted on {code.createdAt}
                     </p>
                 </div>                
             ))}

@@ -23,7 +23,7 @@ const userSchema = new Schema({
     type: String,
     required:true,
   },
-  codes: [{}],
+  codes: [{ref: 'Codes', type: Schema.Types.ObjectId}],
 });
 
 userSchema.pre('save', async function (next) {

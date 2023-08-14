@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_CODE } from "../../utils/mutations";
+import Auth from "../../utils/auth";
 
 function CreatePost() {
   const [formState, setFormState] = useState({ 
     title: '', 
     content: '', 
     programmingLanguage: '',
-    username: ''
+    username: Auth.getUser().data.username
   });
 
   const [addCode, { error }] = useMutation(ADD_CODE);
@@ -18,6 +19,7 @@ function CreatePost() {
       const { data } = await addCode({
         variables: { ...formState },
       });
+      console.log(data);
       window.location.assign('/');
     } catch (err) {
       console.error(err);
@@ -42,15 +44,16 @@ function CreatePost() {
                           id="pro-lang" 
                           value={formState.programmingLanguage}
                           onChange={handleChange}>
-                    <option value="javascript">Javascript</option>
-                    <option value="java">Java</option>
-                    <option value="python">Python</option>
-                    <option value="c">C</option>
-                    <option value="c++">C++</option>
-                    <option value="c#">C#</option>
-                    <option value="php">PHP</option>
-                    <option value="go">Go</option>
-                    <option value="other">Other</option>
+                    <option value="null">Choose a Language</option>
+                    <option value="Javascript">Javascript</option>
+                    <option value="Java">Java</option>
+                    <option value="Python">Python</option>
+                    <option value="C">C</option>
+                    <option value="C++">C++</option>
+                    <option value="C#">C#</option>
+                    <option value="PHP">PHP</option>
+                    <option value="Go">Go</option>
+                    <option value="Other">Other</option>
                   </select>
                   <label>Title: </label>
                   <input
