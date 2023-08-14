@@ -37,6 +37,7 @@ const typeDefs = gql`
     user: [User]
     singleUser(userId: ID!): User
     codes: [Codes]
+    singleCode(codeId: ID!): Codes
     comments: [Comments]
   }
 

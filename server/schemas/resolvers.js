@@ -16,6 +16,9 @@ const resolvers = {
     codes: async () => {
       return await Codes.find().populate('comments')
     },
+    singleCode: async (parent, { codeId }) => {
+      return Codes.findOne({ _id: codeId });
+    },
     comments: async () => {
       return await Comments.find({}).populate('user');
     }
