@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_SINGLE_CODE } from '../../utils/queries';
-import { DELETE_CODE } from '../../utils/mutations';
+import { DELETE_CODE, UPDATE_CODE } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 function SinglePost() {
@@ -13,6 +13,7 @@ function SinglePost() {
     });
   
     const [deleteCode] = useMutation(DELETE_CODE);
+    const [updateCode] = useMutation(UPDATE_CODE);
 
 
     const handleDelete = async (event) => {
@@ -26,6 +27,18 @@ function SinglePost() {
           console.error(err);
         }
       }; 
+
+    const handleUpdate = async (event) => {
+      event.preventDefault();
+      try {
+        const { data } = await updateCode({
+          variables: { codeId: codeId, title: title, content: content},
+        });
+        window.location.assign('/');
+      } catch (err) {
+        console.error(err);
+      }
+    };   
     
     
     const singleCode = data?.singleCode || {};
@@ -45,7 +58,7 @@ function SinglePost() {
                 Posted by {singleCode.username} on {singleCode.createdAt}
             </p>
             {(singleCode.username === Auth.getUser().data.username) ? (<button className='delete-btn btn primary-btn bg-danger' onClick={handleDelete}>Delete Code?</button>) : (null)}
-            
+            {(singleCode.username === Auth.getUser().data.username) ? (<button className='update-btn btn primary-btn' onClick={handleUpdate}>Update Code?</button>) : (null)}
         </div>
     )
 }
