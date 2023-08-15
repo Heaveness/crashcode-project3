@@ -21,6 +21,16 @@ const resolvers = {
     },
     comments: async () => {
       return await Comments.find({}).populate('user');
+    },
+    searchCodesByTitle: async (parent, { searchTerm }) => {
+      return await Codes.find({
+        title: { $regex: searchTerm, $options: 'i' },
+      });
+    },
+    searchCodesByUsername: async (parent, { searchTerm }) => {
+      return await Codes.find({
+        username: { $regex: searchTerm, $options: 'i' },
+      });
     }
   },
   Mutation: {
@@ -54,11 +64,12 @@ const resolvers = {
       return comments;
     },
     deleteCode: async (parent, { codeId }) => {
-      return Codes.findOneAndDelete({ _id: codeId })
+      return Codes.findOneAndRemove({ _id: codeId })
     },
-    updateCode: async (parent, { codeId, content }) => {
+    updateCode: async (parent, { codeId, title, content }) => {
       return Codes.findOneAndUpdate(
         { _id: codeId },
+        { $set: { title: title} },
         { $set: { content: content } },
         { new: true },
       );

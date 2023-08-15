@@ -39,6 +39,8 @@ const typeDefs = gql`
     codes: [Codes]
     singleCode(codeId: ID!): Codes
     comments: [Comments]
+    searchCodesByTitle(searchTerm: String!): [Codes]
+    searchCodesByUsername(searchTerm: String!): [Codes]
   }
 
   type Mutation {
@@ -48,8 +50,8 @@ const typeDefs = gql`
     addCodes(title: String!, content: String!, programmingLanguage: String! username: String!): Codes
     addComments(text: String!, username: String!): Comments
     deleteCode(codeId: ID!): Codes
-    updateCode(codeId: ID!, content: String!): Codes
-  }
+    updateCode(codeId: ID!, title: String!, content: String!, programmingLanguage: String!): Codes
+  } 
 `;
 
 module.exports = typeDefs;

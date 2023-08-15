@@ -34,3 +34,21 @@ export const ADD_CODE = gql`
     }
   }
 `;
+
+export const DELETE_CODE = gql`
+  mutation deleteCode($codeId: ID!) {
+    deleteCode(codeId: $codeId) {
+      _id
+    }
+  }
+  `
+
+export const UPDATE_CODE = gql`
+  mutation updateCode($codeId: ID!, $title: String!, $content: String!) {
+    updateCode(codeId: $codeId, title: $title, content: $content) {
+      title
+      content
+      programmingLanguage
+    }
+  }
+  `
