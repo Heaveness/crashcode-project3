@@ -62,3 +62,39 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const SEARCH_CODES_BY_TITLE = gql`
+  query searchCodesByTitle($searchTerm: String!) {
+    searchCodesByTitle(searchTerm: $searchTerm) {
+      _id
+      title
+      content
+      programmingLanguage
+      createdAt
+      comments {
+        _id
+        text
+        createdAt
+        username
+      }
+    }
+  }
+`;
+
+export const SEARCH_CODES_BY_USERNAME = gql`
+  query searchCodesByUsername($searchTerm: String!) {
+    searchCodesByUsername(searchTerm: $searchTerm) {
+      _id
+      title
+      content
+      programmingLanguage
+      createdAt
+      comments {
+        _id
+        text
+        createdAt
+        username
+      }
+    }
+  }
+`;
+
