@@ -66,11 +66,10 @@ const resolvers = {
     deleteCode: async (parent, { codeId }) => {
       return Codes.findOneAndRemove({ _id: codeId })
     },
-    updateCode: async (parent, { codeId, title, content }) => {
+    updateCode: async (parent, { codeId, title, content, programmingLanguage }) => {
       return Codes.findOneAndUpdate(
         { _id: codeId },
-        { $set: { title: title} },
-        { $set: { content: content } },
+        { $set: { title: title, content: content, programmingLanguage: programmingLanguage } },
         { new: true },
       );
     }

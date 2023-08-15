@@ -44,8 +44,8 @@ export const DELETE_CODE = gql`
   `
 
 export const UPDATE_CODE = gql`
-  mutation updateCode($codeId: ID!, $title: String!, $content: String!) {
-    updateCode(codeId: $codeId, title: $title, content: $content) {
+  mutation updateCode($codeId: ID!, $title: String!, $content: String! $programmingLanguage: String!) {
+    updateCode(codeId: $codeId, title: $title, content: $content, programmingLanguage: $programmingLanguage) {
       title
       content
       programmingLanguage
