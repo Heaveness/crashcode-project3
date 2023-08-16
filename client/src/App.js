@@ -12,6 +12,7 @@ import CreatePost from './components/pages/CreatePost';
 import Login from './components/pages/Login';
 import User from './components/pages/User';
 import SinglePost from './components/pages/SinglePost';
+import ContactUs from './components/pages/ContactUs';
 
 
 
@@ -46,6 +47,10 @@ function App() {
               <Route
                 path="/codes/:codeId"
                 element={<SinglePost />}
+              />
+              <Route 
+              path="/ContactUs"
+              element={<ContactUs />}
               />
             </Routes>
           <Footer />

@@ -3,31 +3,36 @@
       "title": "Hello, World in Python",
       "content": "print('Hello, world!')",
       "programmingLanguage": "Python",
-      "username": "johndoe"
+      "username": "johndoe",
+      "createdAt": "2023-08-01T10:10:00"
     },
     {
       "title": "Simple Calculator in JavaScript",
       "content": "function add(a, b) {\n    return a + b;\n}\n\nfunction subtract(a, b) {\n    return a - b;\n}",
       "programmingLanguage": "JavaScript",
-      "username": "janesmith"
+      "username": "janesmith",
+      "createdAt": "2023-7-01T10:12:00"
     },
     {
       "title": "Data Processing in Python using Pandas",
       "content": "import pandas as pd\n\ndata = pd.read_csv('data.csv')\nprint(data.head())",
       "programmingLanguage": "Python",
-      "username": "mjohnson"
+      "username": "mjohnson",
+      "createdAt": "2023-06-01T10:16:00"
     },
     {
       "title": "User Authentication in Node.js",
       "content": "const express = require('express');\nconst app = express();\n// Implementation of user authentication logic\n",
       "programmingLanguage": "Node.js",
-      "username": "emilyb"
+      "username": "emilyb",
+      "createdAt": "2023-05-01T10:17:00"
     },
     {
       "title": "Object-Oriented Programming in Java",
       "content": "public class Circle {\n    private double radius;\n    \n    public Circle(double radius) {\n        this.radius = radius;\n    }\n    \n    public double getArea() {\n        return Math.PI * radius * radius;\n    }\n}",
       "programmingLanguage": "Java",
-      "username": "davidl"
+      "username": "davidl",
+      "createdAt": "2023-04-01T10:14:00"
     }
 ]
   

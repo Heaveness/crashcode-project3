@@ -4,6 +4,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_SINGLE_CODE } from '../../utils/queries';
 import { DELETE_CODE, UPDATE_CODE } from '../../utils/mutations';
 import Auth from '../../utils/auth';
+import moment from "moment";
 
 function SinglePost() {
     const { codeId } = useParams();
@@ -179,10 +180,10 @@ function SinglePost() {
                 <p id ='contentEl'>{singleCode.content}</p>
             </div>
             <p className='card-header'>
-                Posted by {singleCode.username} on {singleCode.createdAt}
+                Posted by {singleCode.username} on {moment(parseInt(singleCode.createdAt)).format('MMMM Do YYYY, h:mm:ss a')}
             </p>
-            {(singleCode.username === Auth.getUser().data.username) ? (<button id='updateBtn' className='update-btn btn btn-primary' onClick={handleUpdate}>Update Code</button>) : (null)}
-            {(singleCode.username === Auth.getUser().data.username) ? (<button id='deleteBtn' className='delete-btn btn btn-danger' onClick={handleDelete}>Delete Code</button>) : (null)}
+            {(singleCode.username && Auth.getUser() && Auth.getUser().data && singleCode.username === Auth.getUser().data.username) ? (<button id='updateBtn' className='update-btn btn btn-primary' onClick={handleUpdate}>Update Code</button>) : (null)}
+            {(singleCode.username && Auth.getUser() && Auth.getUser().data && singleCode.username === Auth.getUser().data.username) ? (<button id='deleteBtn' className='delete-btn btn btn-danger' onClick={handleDelete}>Delete Code</button>) : (null)}
             
         </div>
     )
