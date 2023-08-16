@@ -19,6 +19,9 @@ db.once('open', async () => {
   for (let code of codeData) {
     if (userMap[code.username]) {
       code.user_id = userMap[code.username];
+      if (code.createdAt) {
+        code.createdAt = new Date(code.createdAt);
+      }
     } else {
       console.log(`No user found for username ${code.username}, skipping this code.`);
       continue;

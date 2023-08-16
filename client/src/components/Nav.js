@@ -5,8 +5,6 @@ import decode from 'jwt-decode';
 import { useLazyQuery } from '@apollo/client';
 import { SEARCH_CODES_BY_TITLE, SEARCH_CODES_BY_USERNAME } from "../utils/queries";
 
-
-
 function Nav () {
 
 const [user, setUser] = useState('');
@@ -59,6 +57,25 @@ const handleLogout = () => {
                         <button onClick={handleSearchUsername}>Search By Username</button>
                     </div>
 
+                    {titleCalled && titleData && titleData.searchCodesByTitle && titleData.searchCodesByTitle.length ? (
+                        <ul>
+                            {titleData.searchCodesByTitle.map((code) => (
+                                <li key={code._id}>{code.title}</li>
+                            ))}
+                        </ul>
+                    ) : null}
+
+                    {usernameCalled && usernameData && usernameData.searchCodesByUsername && usernameData.searchCodesByUsername.length ? (
+                        <ul>
+                            {usernameData.searchCodesByUsername.map((code) => (
+                                <li key={code._id}>{code.username}</li>
+                            ))}
+                        </ul>
+                    ) : null}
+
+                    {(!titleData || !titleData.searchCodesByTitle.length) && (!usernameData || !usernameData.searchCodesByUsername.length) && (
+                        <p>No codes found for the given search term!</p>
+                    )}
                     
                     {user ? ( 
                     <div>
