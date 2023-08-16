@@ -51,6 +51,8 @@ const typeDefs = gql`
     addComments(text: String!, username: String!): Comments
     deleteCode(codeId: ID!): Codes
     updateCode(codeId: ID!, title: String!, content: String!, programmingLanguage: String!): Codes
+    addCommentToCode(_id: String!, _ObjectId: String!): Codes
+    addCodeToUser(_id: String!, _ObjectId: String!): User
   } 
 `;
 
