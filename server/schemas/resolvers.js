@@ -22,15 +22,27 @@ const resolvers = {
     comments: async () => {
       return await Comments.find({}).populate('user');
     },
-    searchCodesByTitle: async (parent, { searchTerm }) => {
-      return await Codes.find({
-        title: { $regex: searchTerm, $options: 'i' },
-      });
+    searchCodesByTitle: async (_, { searchTerm }) => {
+      try {
+        console.log("------- Title--------" + searchTerm)
+        const codes = await Codes.find({ title: { $regex: searchTerm, $options: "i" } });
+        console.log(codes);
+        return codes;
+      } catch (error) {
+        console.error("Error searching by title:", error);
+        throw error;
+      }
     },
     searchCodesByUsername: async (parent, { searchTerm }) => {
-      return await Codes.find({
-        username: { $regex: searchTerm, $options: 'i' },
-      });
+      try {
+        //console.log("------Username---------" + searchTerm);
+      const data =  await Codes.find({  username: { $regex: searchTerm, $options: 'i' } });
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.error("Error searching by title:", error);
+      throw error;
+    }
     }
   },
   Mutation: {
@@ -63,6 +75,26 @@ const resolvers = {
       const comments = await Comments.create(args);
       return comments;
     },
+    addCodeToUser: async (parent, { _id, _ObjectId }) => {
+      const codes =  await User.findOneAndUpdate(
+        { _id: _id },
+        { $push: { codes:   _ObjectId } },
+        { new: true, runValidators: true }
+      );
+      console.log(codes);
+      return codes;
+      
+    },
+    addCommentToCode: async (parent, { _id, _ObjectId }) => {
+      const comments =  await Codes.findOneAndUpdate(
+        { _id: _id },
+        { $push: { comments:   _ObjectId } },
+        { new: true, runValidators: true }
+      );
+      console.log(comments);
+      return comments;
+        
+    },
     deleteCode: async (parent, { codeId }) => {
       return Codes.findOneAndRemove({ _id: codeId })
     },
@@ -75,5 +107,6 @@ const resolvers = {
     }
   },
 };
+
 
 module.exports = resolvers;

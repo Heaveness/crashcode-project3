@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -22,15 +22,17 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [searchResults, setSearchResults] = useState([]);
+
   return (
     <ApolloProvider client={client}>
         <Router>
           <Header />
-          <Nav />
+          <Nav setSearchResults={setSearchResults}/>
             <Routes>
             <Route 
                 path="/" 
-                element={<Home />} 
+                element={<Home searchResults={searchResults}/>} 
               />
               <Route 
                 path="/login" 
