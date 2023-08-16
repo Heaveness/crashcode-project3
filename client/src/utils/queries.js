@@ -62,6 +62,16 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_COMMENT = gql`
+  query getComment($codeId: ID!) {
+    getComment(codeId: $codeId) {
+      _id
+      text
+    }
+  }
+`
+
+
 export const SEARCH_CODES_BY_TITLE = gql`
   query searchCodesByTitle($searchTerm: String!) {
     searchCodesByTitle(searchTerm: $searchTerm) {
