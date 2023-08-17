@@ -1,9 +1,8 @@
+// Imports required
 import React, { useState } from 'react';
 import './App.css';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-
 import Home from './components/pages/Home';
 import Header from './components/Header';
 import Footer from  './components/Footer';
@@ -15,12 +14,13 @@ import SinglePost from './components/pages/SinglePost';
 import ContactUs from './components/pages/ContactUs';
 
 
-
+// Create the Apollo Provider to allow the client to communicate with the Apollo Server
 const client = new ApolloClient({
   uri: '/graphql',
   cache: new InMemoryCache(),
 });
 
+// Function to render the app
 function App() {
   const [searchResults, setSearchResults] = useState([]);
 

@@ -1,8 +1,10 @@
+// Imports required
 import React, {useState} from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_CODE, ADD_CODE_TO_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
+// Function to create a post
 function CreatePost() {
   const [formState, setFormState] = useState({ 
     title: '', 
@@ -11,9 +13,11 @@ function CreatePost() {
     username: Auth.getUser().data.username
   });
 
+  // Mutation to add code
   const [addCode, { error }] = useMutation(ADD_CODE);
   const [addCodeToUser] = useMutation(ADD_CODE_TO_USER);
 
+  // Function to handle form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -33,11 +37,12 @@ function CreatePost() {
     }
   }; 
   
+  // Function to handle change
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({ ...formState, [name]: value });
   }  
-    
+    // Render the create post form
     return (
       <main className="flex-row justify-center mb-4">
         <div className="col-12 col-lg-10">

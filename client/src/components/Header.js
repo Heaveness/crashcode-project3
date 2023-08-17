@@ -1,9 +1,9 @@
+// Imports required
 import React from "react";
 import { Link } from 'react-router-dom';
-
 import { IoLogoCodepen } from "react-icons/io5";
 
-
+// Function to render the header
 function Header() {
     const handleLogoClick = (event) => {
         event.preventDefault();

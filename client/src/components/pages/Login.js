@@ -1,3 +1,4 @@
+// Imports required
 import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -5,6 +6,7 @@ import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 import SignUp from "./SignUp";
 
+// Function to render the login page
 function Login() {
     const [formState, setFormState] = useState({ email: '', password: '' });
     const [login, { error, data }] = useMutation(LOGIN_USER);
@@ -40,6 +42,7 @@ function Login() {
       });
     };
     
+    // Render the login form
     return (
       <main className="flex-row justify-center mb-4 login">
         <div className="row">
@@ -89,6 +92,7 @@ function Login() {
               
             </div>
           </div>
+          {/* Render of the Signup Page */}
           <SignUp />
         </div>
       </main>

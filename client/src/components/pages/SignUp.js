@@ -1,10 +1,10 @@
+// Imports required
 import React, { useState } from 'react';
-
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
-
 import Auth from '../../utils/auth';
 
+// Function to render the signup page
 const Signup = () => {
   const [formState, setFormState] = useState({
     firstName: '',
@@ -13,6 +13,8 @@ const Signup = () => {
     email: '',
     password: '',
   });
+
+  // Mutation to add user
   const [addProfile, { error, data }] = useMutation(ADD_USER);
 
   // update state based on form input changes
@@ -30,6 +32,7 @@ const Signup = () => {
     event.preventDefault();
     console.log(formState);
 
+  
     try {
       const { data } = await addProfile({
         variables: { ...formState },
@@ -41,6 +44,7 @@ const Signup = () => {
     }
   };
 
+  // Render the signup form
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">

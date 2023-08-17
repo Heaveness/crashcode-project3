@@ -1,5 +1,7 @@
+// Imports required
 import decode from 'jwt-decode';
 
+// The AuthService to handle login and logout
 class AuthService {
   getUser() {
     const token = this.getToken();

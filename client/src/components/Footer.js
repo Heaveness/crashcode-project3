@@ -1,6 +1,8 @@
+// Imports required
 import React from "react";
 import { Link } from "react-router-dom";
 
+// Function to render the footer
 function Footer() {
     return (
         <footer>

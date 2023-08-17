@@ -1,3 +1,4 @@
+// Imports required
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
@@ -8,13 +9,15 @@ import RenderComments from './CommentsList';
 import Auth from '../../utils/auth';
 import moment from "moment";
 
+// Function to render the single post page
 function SinglePost() {
     const { codeId } = useParams();
 
     const { loading, data } = useQuery(QUERY_SINGLE_CODE, {
         variables: { codeId: codeId },
     });
-  
+    
+    // Mutation to delete a code
     const [deleteCode] = useMutation(DELETE_CODE);
     const [updateCode] = useMutation(UPDATE_CODE);
 
@@ -170,6 +173,7 @@ function SinglePost() {
         return <div>Loading...</div>;
     }
 
+    // Render the single post page
     return (
         <div className="home">
         <div className='container'>
@@ -184,6 +188,7 @@ function SinglePost() {
             <p className='card-header single-footer'>
                 Posted by {singleCode.username} on {moment(parseInt(singleCode.createdAt)).format('MMMM Do YYYY, h:mm:ss a')}
             </p>
+            {/* If the user is logged in and the username matches the username of the code, then the user can update or delete the code */}
             {(singleCode.username && Auth.getUser() && Auth.getUser().data && singleCode.username === Auth.getUser().data.username) ? (<button id='updateBtn' className='update-btn btn btn-primary' onClick={handleUpdate}>Update Code</button>) : (null)}
             {(singleCode.username && Auth.getUser() && Auth.getUser().data && singleCode.username === Auth.getUser().data.username) ? (<button id='deleteBtn' className='delete-btn btn btn-danger' onClick={handleDelete}>Delete Code</button>) : (null)}
             <AddComment />

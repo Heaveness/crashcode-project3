@@ -1,6 +1,8 @@
+// Imports required
 import React from 'react';
 import { FaGithub } from "react-icons/fa";
 
+// Function to render the github repos
 function Repos() {
     return (
     <div className="repos">
