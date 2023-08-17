@@ -11,7 +11,7 @@
       "content": "function add(a, b) {\n    return a + b;\n}\n\nfunction subtract(a, b) {\n    return a - b;\n}",
       "programmingLanguage": "JavaScript",
       "username": "janesmith",
-      "createdAt": "2023-7-01T10:12:00"
+      "createdAt": "2023-07-01T10:12:00"
     },
     {
       "title": "Data Processing in Python using Pandas",

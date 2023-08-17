@@ -71,8 +71,8 @@ const resolvers = {
       const codes = await Codes.create( {title, content, programmingLanguage, username});
       return codes;
     },
-    addComments: async (parent, args) => {
-      const comments = await Comments.create(args);
+    addComments: async (parent, {text, username}) => {
+      const comments = await Comments.create({text, username});
       return comments;
     },
     addCodeToUser: async (parent, { _id, _ObjectId }) => {

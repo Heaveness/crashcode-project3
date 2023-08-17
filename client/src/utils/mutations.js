@@ -52,18 +52,19 @@ export const UPDATE_CODE = gql`
     }
   }
   `
-export const DELETE_COMMENT = gql`
-  mutation deleteComment($codeId: ID!, $commentId: ID!) {
-    deleteComment(codeId: $codeId, commentId: $commentId) {
-      _id
-      }
-    }
-    `
+// export const DELETE_COMMENT = gql`
+//   mutation deleteComment($codeId: ID!, $commentId: ID!) {
+//     deleteComment(codeId: $codeId, commentId: $commentId) {
+//       _id
+//       }
+//     }
+//     `
 
 
-
-export const ADD_COMMENT = gql`
-  mutation addComment($codeId: ID!, $text: String!) {
-    addComment(codeId: $codeId, text: $text) {
+export const ADD_COMMENTS = gql`
+  mutation addComments( $text: String!, $username: String!) {
+    addComments( text: $text, username: $username) {
       text
+      username
+    }
   }`  

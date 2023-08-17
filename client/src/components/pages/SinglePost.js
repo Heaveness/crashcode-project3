@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_SINGLE_CODE } from '../../utils/queries';
 import { DELETE_CODE, UPDATE_CODE } from '../../utils/mutations';
-import addComment from './Comments';
+import AddComment from './Comments';
 import Auth from '../../utils/auth';
 import moment from "moment";
 
@@ -170,22 +170,23 @@ function SinglePost() {
     }
 
     return (
-        <div>
-            <div id ='titleCont'>
-                <h2 id ='titleEl' className='card-header'>{singleCode.title}</h2>
+        <div className="home">
+        <div className='container'>
+            <div  id ='titleCont'>
+                <h2 id ='titleEl' className='card-header single-title'>{singleCode.title}</h2>
             </div>
-            <div id ='proLangCont'>
-                <h4 id ='progLangEl'>Code Language: {singleCode.programmingLanguage}</h4>
+            <h4 className="code-language" id ='progLangEl'>Code Language: {singleCode.programmingLanguage}</h4>              
+            <div id = 'contentCont' className='card-body single-body'>
+
+            <p id ='contentEl'>{singleCode.content}</p>
             </div>
-            <div id = 'contentCont' className='card-body'>
-                <p id ='contentEl'>{singleCode.content}</p>
-            </div>
-            <p className='card-header'>
+            <p className='card-header single-footer'>
                 Posted by {singleCode.username} on {moment(parseInt(singleCode.createdAt)).format('MMMM Do YYYY, h:mm:ss a')}
             </p>
             {(singleCode.username && Auth.getUser() && Auth.getUser().data && singleCode.username === Auth.getUser().data.username) ? (<button id='updateBtn' className='update-btn btn btn-primary' onClick={handleUpdate}>Update Code</button>) : (null)}
             {(singleCode.username && Auth.getUser() && Auth.getUser().data && singleCode.username === Auth.getUser().data.username) ? (<button id='deleteBtn' className='delete-btn btn btn-danger' onClick={handleDelete}>Delete Code</button>) : (null)}
-            <addComment />
+            <AddComment />
+        </div>
         </div>
     )
 }

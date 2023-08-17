@@ -79,6 +79,7 @@ export const SEARCH_CODES_BY_TITLE = gql`
       title
       content
       programmingLanguage
+      username
       createdAt
       comments {
         _id
@@ -97,6 +98,7 @@ export const SEARCH_CODES_BY_USERNAME = gql`
       title
       content
       programmingLanguage
+      username
       createdAt
       comments {
         _id

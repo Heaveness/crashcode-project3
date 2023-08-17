@@ -48,7 +48,7 @@ const Signup = () => {
           <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
           <div className="card-body">
             {data ? (
-              <p>
+              <p className="success">
                 Success! Login to use the app!
               </p>
             ) : (
@@ -94,7 +94,7 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <button
-                  className="btn btn-block btn-info"
+                  className="btn btn-block btn-info button-text"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >

@@ -17,7 +17,7 @@ function Home( {searchResults} ) {
   }
 
   return (
-    <div>
+    <div className="home">
       {loading ? (
         <div>Loading...</div> 
       ) : (
