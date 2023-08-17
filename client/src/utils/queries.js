@@ -22,6 +22,20 @@ export const QUERY_SINGLE_CODE = gql`
       programmingLanguage
       username
       createdAt
+      comments {
+        _id
+      }
+    }
+  }
+`;
+
+export const QUERY_SINGLE_COMMENT = gql`
+  query singleComment($commentId: ID!) {
+    singleComment(commentId: $commentId) {
+      _id
+      text
+      createdAt
+      username
     }
   }
 `;

@@ -44,8 +44,9 @@ useEffect(() => {
 },[]);
 
 const handleLogout = () => {
+    Auth.logout();
     window.location.assign('/');
-    Auth.logout();
+    
 
 
 }

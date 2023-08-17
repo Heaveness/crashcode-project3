@@ -1,14 +1,43 @@
-@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono");
+
+
+* {
+    font-family: "Rajdhani", serif;;
+    
+}
 
 :root {
-    --background: #000501;
     --title: #007CDF;
     --body: #ADA9BB;
     --header: #2D3E50;
 }
 
+button {
+    background-color: var(--title);
+    color: var(--body);
+    font-family: "Rajdhani", serif;
+    font-size: 1.0rem;
+    border-radius: 3px;
+    border: none;
+    padding: 10px;
+    margin: 10px;
+}
+
+button:hover {
+    font-family: "Rajdhani", serif;
+    scale: 1.1;
+    transition: 0.5s;
+}
 html{
-    background-color: var(--background);
+    background-image: url(https://images.pexels.com/photos/247676/pexels-photo-247676.jpeg);
+}
+
+label {
+    color: var(--title);
+    font-family: "Rajdhani", serif;
+    font-size: 1.0rem
+
 }
 
 #nav-list {
@@ -27,7 +56,6 @@ html{
     margin-bottom: 0%;
     background-color: var(--background);
 }
-
 
 header {
     display: flex;
@@ -50,26 +78,30 @@ footer{
 }
 
 .title {
-    font-family: "Libre Baskerville", serif;
-    font-size: 7rem;
+    font-family: "Rajdhani", serif;;
+    font-size: 9rem;
+    font-weight: 900;
     color: var(--title);
 }
 
-h1, h3, .title {
-    font-family: "Libre Baskerville", serif;
+
+#contentEl {
+    font-family: "JetBrains Mono", serif;
+}
+h1, h4, h3 {
     font-size: 2rem;
     color: var(--title);
 }
 
 .search {
     color: var(--title);
-    font-family: "Libre Baskerville", serif;
+    font-family: "Rajdhani", serif;
     font-size: 1.0rem;
 }
 
 .error {
     color: red;
-    font-family: "Libre Baskerville", serif;
+    font-family: "Rajdhani", serif;
     font-size: 1.0rem;
 }
 
@@ -89,6 +121,7 @@ h1, h3, .title {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: "JetBrains Mono", serif;
 }
 
 .single-post {
@@ -98,7 +131,7 @@ h1, h3, .title {
 .single-title {
     display: flex;
     justify-content: center;
-    font-family: "Libre Baskerville", serif;
+    font-family: "Rajdhani", serif;
     font-size: 2rem;
     color: var(--title);
     border: #000501 solid 1px;
@@ -113,7 +146,7 @@ h1, h3, .title {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: "Libre Baskerville", serif;
+    font-family: "Rajdhani", serif;
     font-size: 1.5rem;
     border: #000501 solid 1px;
     border-radius: 3px;
@@ -123,7 +156,7 @@ h1, h3, .title {
 .single-footer {
     display: flex;
     justify-content: center;
-    font-family: "Libre Baskerville", serif;
+    font-family: "Rajdhani", serif;
     font-size: 1.5rem;
     color: var(--title);
     border: #000501 solid 1px;
@@ -143,7 +176,7 @@ h1, h3, .title {
 }
 
 .login {
-    font-family: "Libre Baskerville", serif;
+    font-family: "Rajdhani", serif;
 }
 
 .login-title, .success {
@@ -155,10 +188,14 @@ h1, h3, .title {
     flex-direction: column;
     justify-content: center;
     color: var(--title);
-    font-family: "Libre Baskerville", serif;
+    font-family: "Rajdhani", serif;
 }
 
 .button-text {
     color: var(--title);
-    font-family: "Libre Baskerville", serif;
+    font-family: "Rajdhani", serif;
+}
+
+.form-input {
+    font-family: "JetBrains Mono", serif;
 }
