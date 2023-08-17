@@ -11,7 +11,7 @@ const DisplayPost = ({codes}) => {
             {codes && codes.map(code => (
                 <div key={code._id} className="container card mb-3">
                     <Link className="card-header btn btn-block btn-squared btn-light text-light " to={`/codes/${code._id}`}>
-							<h3>[{code.programmingLanguage}] {code.title} </h3>
+							<h3 className='link-title'> [{code.programmingLanguage}] {code.title} </h3>
 					</Link>            
                     <div className="card-body display-body">
                         <p className="content">{code.content}</p>

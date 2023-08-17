@@ -4,6 +4,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_SINGLE_CODE } from '../../utils/queries';
 import { DELETE_CODE, UPDATE_CODE } from '../../utils/mutations';
 import AddComment from './Comments';
+import RenderComments from './CommentsList';  
 import Auth from '../../utils/auth';
 import moment from "moment";
 
@@ -186,6 +187,7 @@ function SinglePost() {
             {(singleCode.username && Auth.getUser() && Auth.getUser().data && singleCode.username === Auth.getUser().data.username) ? (<button id='updateBtn' className='update-btn btn btn-primary' onClick={handleUpdate}>Update Code</button>) : (null)}
             {(singleCode.username && Auth.getUser() && Auth.getUser().data && singleCode.username === Auth.getUser().data.username) ? (<button id='deleteBtn' className='delete-btn btn btn-danger' onClick={handleDelete}>Delete Code</button>) : (null)}
             <AddComment />
+            <RenderComments />
         </div>
         </div>
     )

@@ -62,9 +62,19 @@ export const UPDATE_CODE = gql`
 
 
 export const ADD_COMMENTS = gql`
-  mutation addComments( $text: String!, $username: String!) {
+  mutation addComments(  $text: String!, $username: String!) {
     addComments( text: $text, username: $username) {
+      _id
       text
       username
+      createdAt
     }
   }`  
+
+
+export const ADD_COMMENT_TO_CODE = gql`
+  mutation addCommentToCode( $_id: String!, $_ObjectId: String!) {
+    addCommentToCode( _id: $_id, _ObjectId: $_ObjectId) {
+      title
+    }
+  }`

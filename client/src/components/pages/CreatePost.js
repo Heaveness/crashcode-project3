@@ -76,7 +76,7 @@ function CreatePost() {
                     onChange={handleChange}
                   />
                   <button
-                    className="btn btn-block btn-info"
+                    className=""
                     type="submit"
                   >
                     Submit
