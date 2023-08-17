@@ -27,6 +27,7 @@ export const ADD_USER = gql`
 export const ADD_CODE = gql`
   mutation addCodes($title: String!, $content: String!, $programmingLanguage: String!, $username: String!) {
     addCodes(title: $title, content: $content, programmingLanguage: $programmingLanguage, username: $username) {
+      _id
       title
       content
       programmingLanguage
@@ -41,7 +42,7 @@ export const DELETE_CODE = gql`
       _id
     }
   }
-  `
+  `;
 
 export const UPDATE_CODE = gql`
   mutation updateCode($codeId: ID!, $title: String!, $content: String! $programmingLanguage: String!) {
@@ -51,7 +52,7 @@ export const UPDATE_CODE = gql`
       programmingLanguage
     }
   }
-  `
+  `;
 // export const DELETE_COMMENT = gql`
 //   mutation deleteComment($codeId: ID!, $commentId: ID!) {
 //     deleteComment(codeId: $codeId, commentId: $commentId) {
@@ -69,7 +70,7 @@ export const ADD_COMMENTS = gql`
       username
       createdAt
     }
-  }`  
+  }`;  
 
 
 export const ADD_COMMENT_TO_CODE = gql`
@@ -77,4 +78,11 @@ export const ADD_COMMENT_TO_CODE = gql`
     addCommentToCode( _id: $_id, _ObjectId: $_ObjectId) {
       title
     }
-  }`
+  }`;
+
+export const ADD_CODE_TO_USER = gql`
+  mutation addCodeToUser( $_id: String!, $_ObjectId: String!) {
+    addCodeToUser( _id: $_id, _ObjectId: $_ObjectId) {
+      username
+    }
+  }`;

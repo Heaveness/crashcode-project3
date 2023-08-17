@@ -84,7 +84,13 @@ footer{
     color: var(--title);
 }
 
+.profile-title{
+    color: var(--title);
+}
 
+.comment-text {
+    color: var(--title);
+}
 #contentEl {
     font-family: "JetBrains Mono", serif;
 }

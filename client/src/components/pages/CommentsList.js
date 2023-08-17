@@ -18,7 +18,7 @@ const RenderComments = () => {
             {comments && comments.map(comment => (
                 <div key={comment._id} className="card mb-3">                   
                     <div className="card-body">
-                        <p>{comment.content}</p>
+                        <p className='comment-text'>{comment._id}</p>
                     </div>
                     <p className="card-header">
                         {comment.username} posted on {moment(parseInt(comment.createdAt)).format('MMMM Do YYYY, h:mm:ss a')}
