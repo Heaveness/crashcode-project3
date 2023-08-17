@@ -5,34 +5,34 @@ import decode from 'jwt-decode';
 import { useLazyQuery } from '@apollo/client';
 import { SEARCH_CODES_BY_TITLE, SEARCH_CODES_BY_USERNAME } from "../utils/queries";
 
-
-
 function Nav ({ setSearchResults }) {
 
 const [user, setUser] = useState('');
 const [searchTerm, setSearchTerm] = useState('');
-    const [searchByTitle, { data: titleData, called: titleCalled }] = useLazyQuery(SEARCH_CODES_BY_TITLE);
-    const [searchByUsername, { data: usernameData, called: usernameCalled }] = useLazyQuery(SEARCH_CODES_BY_USERNAME);
+const [searchStatus, setSearchStatus] = useState(null);
+const [searchByTitle] = useLazyQuery(SEARCH_CODES_BY_TITLE);
+const [searchByUsername] = useLazyQuery(SEARCH_CODES_BY_USERNAME);
 
     const handleInputChange = async (event) => {
         setSearchTerm(event.target.value);
+        setSearchStatus(null);
     };
 
-    const handleSearchTitle = () => {
-        searchByTitle({ variables: { searchTerm } }).then(response => {
-            if (response.data && response.data.searchCodesByTitle) {
-                setSearchResults(titleData.searchCodesByTitle);
+const handleSearch = () => {
+    // Search by title first.
+    searchByTitle({ variables: { searchTerm } }).then(responseTitle => {
+        // Search by username next.
+        searchByUsername({ variables: { searchTerm } }).then(responseUsername => {
+            // Combine results from both queries.
+            const combinedResults = [...responseTitle.data.searchCodesByTitle, ...responseUsername.data.searchCodesByUsername];
+            if (combinedResults.length === 0) {
+                setSearchStatus("No results found!");  // Update status if no results
+            } else {
+                setSearchResults(combinedResults);
             }
         });
-    };
-
-    const handleSearchUsername = () => {
-        searchByUsername({ variables: { searchTerm } }).then(response => {
-            if (response.data && response.data.searchCodesByUsername) {
-                setSearchResults(usernameData.searchCodesByUsername);
-            }
-        });
-        };
+    });
+};
 
 
 useEffect(() => {
@@ -50,27 +50,27 @@ const handleLogout = () => {
 
 }
     return (
-        <div>
+        <div className="nav">
             <nav>
                 <ul id="nav-list">
                     <div>
-                        <label htmlFor="search" className="form-label">Search: </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            aria-label="search"
-                            aria-describedby="inputGroup-sizing-default"
-                            value={searchTerm}
-                            onChange={handleInputChange}
-                        />
-                        <button onClick={handleSearchTitle}>Search By Title</button>
-                        <button onClick={handleSearchUsername}>Search By Username</button>
-                    </div>
+                    <label htmlFor="search" className="form-label search">Search: </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            aria-label="search"
+                            aria-describedby="inputGroup-sizing-default"
+                            value={searchTerm}
+                            onChange={handleInputChange}
+                        />
+                        <button onClick={handleSearch}>Search</button>
+                        {searchStatus && <div className="error">{searchStatus}</div>}
+                    </div>
 
 
                     {user ? (
                     <div>
-                        <h4>Welcome {user}</h4>
+                        <h4 className="search">Welcome {user}</h4>
                     </div>  ) : (null)}
                     {user ? (
                     <li>

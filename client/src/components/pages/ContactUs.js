@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Repos from './GithubRepos'
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -26,7 +27,12 @@ const ContactUs = () => {
   };
 
   return (
-    <div>
+    <main className='flex-row justify-center mb-4 '>
+      <div className='row mb-4'>
+      <div className="contact col">
+      <Repos />
+      </div>
+      <div className="contact col-4">
       <h2>Contact Us</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -63,7 +69,9 @@ const ContactUs = () => {
         </div>
         <button type="submit">Submit</button>
       </form>
+      </div>
     </div>
+    </main>
   );
 };
 

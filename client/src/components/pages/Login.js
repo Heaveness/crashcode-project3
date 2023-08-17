@@ -41,10 +41,10 @@ function Login() {
     };
     
     return (
-      <main className="flex-row justify-center mb-4">
-        <div className="col-12 col-lg-10">
-          <div className="card">
-            <h4 className="card-header bg-dark text-light p-2">Login</h4>
+      <main className="flex-row justify-center mb-4 login">
+        <div className="row">
+          <div className="card col-6">
+            <h4 className="card-header bg-dark text-light p-2 login-title">Login</h4>
             <div className="card-body">
               {data ? (
                 <p>
@@ -89,7 +89,6 @@ function Login() {
               
             </div>
           </div>
-          <br></br>
           <SignUp />
         </div>
       </main>
