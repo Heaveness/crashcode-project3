@@ -1,9 +1,11 @@
+// Imports required
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_COMMENTS, ADD_COMMENT_TO_CODE} from '../../utils/mutations';
 import { useParams } from 'react-router-dom';
 import Auth from '../../utils/auth';
 
+// Function to add comments to a code
 function AddComment() {
   const { codeId } = useParams();
 
@@ -12,9 +14,11 @@ function AddComment() {
     username: Auth.loggedIn() ? Auth.getUser().data.username : '',
   });
 
+  // Mutation to add comments
   const [addComments, { error }] = useMutation(ADD_COMMENTS);
   const [addCommentToCode] = useMutation(ADD_COMMENT_TO_CODE);
 
+  // Function to handle comment submit
   const handleCommentSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -34,12 +38,14 @@ function AddComment() {
       console.error(err);
     }
   };
-
+ 
+  // Function to handle change
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({ ...formState, [name]: value });
   };
 
+  // Render the form
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">

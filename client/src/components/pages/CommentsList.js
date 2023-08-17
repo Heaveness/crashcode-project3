@@ -1,9 +1,11 @@
+// Imports required
 import React from "react";
 import moment from "moment";
 import { QUERY_SINGLE_CODE } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 
+// Function to render comments
 const RenderComments = () => {
     const { codeId } = useParams();
 
@@ -12,7 +14,8 @@ const RenderComments = () => {
         })
         console.log(data);
         const comments = data?.singleCode.comments || [];
-
+    
+    // Render the comments    
     return (
         <div>
             {comments && comments.map(comment => (

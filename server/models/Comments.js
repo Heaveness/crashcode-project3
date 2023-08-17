@@ -1,5 +1,7 @@
+// Imports required
 const { Schema, model } = require('mongoose');
 
+// Create the Comments schema
 const commentsSchema = new Schema({
   text: {
     type: String,

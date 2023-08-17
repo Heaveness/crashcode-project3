@@ -2,10 +2,9 @@
 import React from "react";
 import { useQuery } from '@apollo/client';
 import { QUERY_CODES } from "../../utils/queries";
-
 import DisplayPost from "./DisplayPost";
 
-
+// Function to render the home page
 function Home( {searchResults} ) {
     // Execute the query on component load
   const { loading, data } = useQuery(QUERY_CODES);
@@ -16,6 +15,7 @@ function Home( {searchResults} ) {
     codesToDisplay = searchResults;
   }
 
+  // Render of the home/landing page
   return (
     <div className="home">
       {loading ? (

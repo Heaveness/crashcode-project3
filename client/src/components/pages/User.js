@@ -1,11 +1,11 @@
+// Imports required
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import moment from 'moment';
-
 import { QUERY_SINGLE_USER } from '../../utils/queries';
-
 import Auth from '../../utils/auth';
 
+// Function to render the user page
 function User() {
   const userId = Auth.getUser().data._id;
     const { loading, data, error } = useQuery(QUERY_SINGLE_USER, 

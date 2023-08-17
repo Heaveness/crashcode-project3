@@ -1,6 +1,8 @@
+// Imports required
 const { Schema, model } = require('mongoose');
 const moment = require('moment');
 
+// Create the Code schema
 const codeSchema = new Schema({
   title: {
     type: String,
@@ -29,6 +31,7 @@ const codeSchema = new Schema({
   }
 });
 
+// Create a virtual called formattedCreatedAt
 codeSchema.virtual('formattedCreatedAt').get(function () {
   return moment(this.createdAt).format('MMMM Do YYYY, h:mm:ss a');
 });

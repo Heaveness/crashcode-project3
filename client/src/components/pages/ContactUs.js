@@ -1,6 +1,8 @@
+// Imports required
 import React, { useState } from 'react';
 import Repos from './GithubRepos'
 
+// Function to render contact us page
 const ContactUs = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -8,6 +10,7 @@ const ContactUs = () => {
     message: '',
   });
 
+  // Function to handle change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -16,6 +19,7 @@ const ContactUs = () => {
     }));
   };
 
+  // Function to handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
@@ -26,6 +30,7 @@ const ContactUs = () => {
     });
   };
 
+  // Render the list devs, and contact us form
   return (
     <main className='flex-row justify-center mb-4 '>
       <div className='row mb-4'>

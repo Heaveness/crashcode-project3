@@ -1,3 +1,4 @@
+// Imports required
 import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 import Auth from "../utils/auth";
@@ -5,6 +6,7 @@ import decode from 'jwt-decode';
 import { useLazyQuery } from '@apollo/client';
 import { SEARCH_CODES_BY_TITLE, SEARCH_CODES_BY_USERNAME } from "../utils/queries";
 
+// Function to render the navigation bar and functionality
 function Nav ({ setSearchResults }) {
 
 const [user, setUser] = useState('');
@@ -34,6 +36,7 @@ const handleSearch = () => {
     });
 };
 
+// Handle enter key press
 const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
         handleSearch();
@@ -49,6 +52,7 @@ useEffect(() => {
     }
 },[]);
 
+// Handle logout
 const handleLogout = () => {
     Auth.logout();
     window.location.assign('/');
@@ -56,6 +60,7 @@ const handleLogout = () => {
 
 
 }
+// Render the navigation bar
     return (
         <div className="nav">
             <nav>
@@ -77,6 +82,7 @@ const handleLogout = () => {
 
 
                     {user ? (
+                    // If user is logged in, display welcome message, post code button, profile button, and logout button
                     <div>
                         <h4 className="search">Welcome {user}</h4>
                     </div>  ) : (null)}
