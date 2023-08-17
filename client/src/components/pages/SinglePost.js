@@ -54,7 +54,7 @@ function SinglePost() {
                     const { data } = await updateCode({
                     variables: { codeId: codeId, title: changedTitle, content: changedContent, programmingLanguage: changedProLang},
                     });
-                    window.location.assign(`/codes/${codeId}`);
+                    window.location.assign(`/`);
                 } catch (err) {
                     console.error(err);
                 }
