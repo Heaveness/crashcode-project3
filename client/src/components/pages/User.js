@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
+import moment from 'moment';
 
 import { QUERY_SINGLE_USER } from '../../utils/queries';
 
@@ -12,6 +13,7 @@ function User() {
         variables: { userId },
       }
     );
+    console.log(data);
 
     if (loading ) {
       return <div>Loading...</div>;
@@ -21,7 +23,7 @@ function User() {
       return <div>Error loading user data...</div>;
     }
   
-    const user = data?.singleUser.username || {};
+    const user = data?.singleUser || {};
 
     if (!user) {
       return (
@@ -41,7 +43,7 @@ function User() {
   
     return (
       <div>
-        <h2 className="card-header">Your Codes</h2>
+        <h2 className="profile-title card-header">Your Codes</h2>
         <div className="flex-row justify-center mb-4">
           <div className="col-12 col-lg-10">
             <div className="card">
@@ -55,7 +57,7 @@ function User() {
                       <div className="card-body bg-light p-2">
                         <p>{code.content}</p>
                         <p className="card-header">
-                          {code.username} posted on {code.createdAt}
+                          {code.username} posted on {moment(parseInt(code.createdAt)).format('MMMM Do YYYY, h:mm:ss a')}
                         </p>
                       </div> 
                     </div> 

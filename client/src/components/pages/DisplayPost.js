@@ -6,9 +6,12 @@ const DisplayPost = ({codes}) => {
     if (!codes.length) {
         return <h3>No Codes Yet</h3>
     }
+
+    const sortedCodes = [...codes].sort((a, b) => b.createdAt - a.createdAt);
+
     return (
         <div>
-            {codes && codes.map(code => (
+            {sortedCodes && sortedCodes.map(code => (
                 <div key={code._id} className="container card mb-3">
                     <Link className="card-header btn btn-block btn-squared btn-light text-light " to={`/codes/${code._id}`}>
 							<h3 className='link-title'> [{code.programmingLanguage}] {code.title} </h3>

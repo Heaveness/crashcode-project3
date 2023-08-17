@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useMutation } from "@apollo/client";
-import { ADD_CODE } from "../../utils/mutations";
+import { ADD_CODE, ADD_CODE_TO_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
 function CreatePost() {
@@ -12,6 +12,7 @@ function CreatePost() {
   });
 
   const [addCode, { error }] = useMutation(ADD_CODE);
+  const [addCodeToUser] = useMutation(ADD_CODE_TO_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -20,6 +21,12 @@ function CreatePost() {
         variables: { ...formState },
       });
       console.log(data);
+
+      const { data: data2 } = await addCodeToUser({
+        variables: { _id: Auth.getUser().data._id, _ObjectId: data.addCodes._id},
+      });
+      console.log(data2);
+      
       window.location.assign('/');
     } catch (err) {
       console.error(err);
