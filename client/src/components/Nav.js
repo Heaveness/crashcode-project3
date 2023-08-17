@@ -34,6 +34,12 @@ const handleSearch = () => {
     });
 };
 
+const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+        handleSearch();
+    }
+};
+
 
 useEffect(() => {
     const token = localStorage.getItem('id_token');
@@ -63,6 +69,7 @@ const handleLogout = () => {
                             aria-describedby="inputGroup-sizing-default"
                             value={searchTerm}
                             onChange={handleInputChange}
+                            onKeyPress={handleKeyPress}
                         />
                         <button onClick={handleSearch}>Search</button>
                         {searchStatus && <div className="error">{searchStatus}</div>}
